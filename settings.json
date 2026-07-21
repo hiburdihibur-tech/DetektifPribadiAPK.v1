@@ -1,0 +1,5 @@
+{
+    "timeframe": "15",
+    "scan_interval": 30,
+    "telegram": true
+}

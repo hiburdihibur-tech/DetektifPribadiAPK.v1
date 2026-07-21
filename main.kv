@@ -1,0 +1,109 @@
+GridLayout:
+        
+    cols: 1
+    padding: 20
+    spacing: 12
+        
+
+    canvas.before:
+        Color:
+            rgba: 0.08,0.08,0.08,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        text: "DETEKTIF PRIBADI"
+        font_size: 34
+        bold: True
+        color: 1,1,1,1
+        zize_hint_y: None
+        height: 55
+
+    Label:
+        text: "Professional Crypto Scanner"
+        font_size: 18
+        color: .8,.8,.8,1
+        size_hint_y: None
+        height: 28
+
+    Label:
+        text: "by HENDY CHINTO"
+        font_size: 15
+        color: .6,.6,.6,1
+        zize_hint_y: None
+        height: 25
+
+    Widget:
+        size_hint_y: None
+        height: 10
+
+    Label:
+        id: lbl_status
+        text: "STATUS : READY"
+        font_size: 20
+        bold: True
+        color: 0,1,0,1
+        size_hint_y: None
+        height: 40
+
+    Label:
+        id: lbl_timeframe
+        text: "Timeframe : 15M"
+        font_size: 18
+        color: 1,1,1,1
+        size_hint_y: None
+        height: 35
+
+    Label:
+        id: lbl_signal
+        text: "Signal Hari Ini : 0"
+        font_size: 18
+        color: 1,1,1,1
+        size_hint_y: None
+        height: 35
+
+    Widget:
+        size_hint_y: None
+        height: 20
+
+    Button:
+        text: "START SCAN"
+        font_size: 20
+        size_hint_y: None
+        height: 55
+        on_release: app.start_scan()
+
+    Button:
+        text: "STOP SCAN"
+        font_size: 20
+        size_hint_y: None
+        height: 55
+        on_release: app.stop_scan()
+
+    Button:
+        text: "HASIL SCAN"
+        font_size: 18
+        size_hint_y: None
+        height: 50
+        on_release: app.show_scan_result_popup()
+
+    Button:
+        text: "COIN LIST"
+        font_size: 18
+        size_hint_y: None
+        height: 50
+        on_release: app.show_coin_list_popup()
+
+    Button:
+        text: "LOG"
+        font_size: 18
+        size_hint_y: None
+        height: 50
+
+    Button:
+        text: "SETTINGS"
+        font_size: 18
+        size_hint_y: None
+        height: 50
+        on_release: app.show_settings_popup()
+          
