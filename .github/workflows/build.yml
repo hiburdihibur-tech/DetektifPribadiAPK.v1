@@ -24,14 +24,13 @@ jobs:
       - name: Install Buildozer
         run: |
           sudo apt update
-          sudo apt install -y zip unzip git python3-pip python3-setuptools python3-wheel \
-          build-essential ccache libffi-dev libssl-dev libsqlite3-dev \
-          libjpeg-dev zlib1g-dev openjdk-17-jdk
+          sudo apt install -y zip unzip git python3-pip python3-setuptools python3-wheel build-essential ccache libffi-dev libssl-dev libsqlite3-dev libjpeg-dev zlib1g-dev openjdk-17-jdk
           pip install --upgrade pip
           pip install buildozer cython
 
       - name: Build APK
         run: |
+          yes | sdkmanager --licenses || true
           buildozer android debug
 
       - name: Upload APK
