@@ -12,7 +12,7 @@ source.include_exts = py,kv,json,png,jpg,txt
 
 version = 1.0
 
-requirements = python3==3.11,kivy==2.3.0,requests,numpy==1.26.4,ta
+requirements = python3,kivy,requests
 
 orientation = portrait
 
