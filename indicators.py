@@ -1,48 +1,73 @@
-import pandas as pd
+from typing import List
 
 
-def ema(close, period=20):
-    close = pd.Series(close)
-    return close.ewm(span=period, adjust=False).mean()
+def ema(close: List[float], period=20):
+
+    if not close:
+        return []
+
+    alpha = 2 / (period + 1)
+
+    result = [float(close[0])]
+
+    for price in close[1:]:
+        result.append(alpha * float(price) + (1 - alpha) * result[-1])
+
+    return result
 
 
 def macd(close):
 
-    close = pd.Series(close)
+    ema_fast = ema(close, 10)
+    ema_slow = ema(close, 20)
 
-    ema_fast = close.ewm(span=10, adjust=False).mean()
-    ema_slow = close.ewm(span=20, adjust=False).mean()
+    macd_line = []
 
-    macd_line = ema_fast - ema_slow
-    signal_line = macd_line.ewm(span=7, adjust=False).mean()
+    for f, s in zip(ema_fast, ema_slow):
+        macd_line.append(f - s)
+
+    signal_line = ema(macd_line, 7)
 
     return macd_line, signal_line
 
 
 def volume_ma(volume, period=20):
 
-    volume = pd.Series(volume)
+    result = []
 
-    return volume.rolling(period).mean()
+    for i in range(len(volume)):
+        if i + 1 < period:
+            result.append(None)
+        else:
+            window = volume[i - period + 1:i + 1]
+            result.append(sum(window) / period)
+
+    return result
 
 
 def macd_cross_up(macd, signal):
 
+    if len(macd) < 3 or len(signal) < 3:
+        return False
+
     return (
-        macd.iloc[-3] <= signal.iloc[-3]
+        macd[-3] <= signal[-3]
         and
-        macd.iloc[-2] > signal.iloc[-2]
+        macd[-2] > signal[-2]
     )
 
 
 def price_above_ema(close, ema20):
 
-    return close[-1] > ema20.iloc[-1]
+    return close[-1] > ema20[-1]
 
 
 def volume_above_ma(volume, volume_ma20):
 
-    return volume[-1] > volume_ma20.iloc[-1]
+    if volume_ma20[-1] is None:
+        return False
+
+    return volume[-1] > volume_ma20[-1]
 
 
 def signal_score(close, ema20, macd, signal, volume, volume_ma20):
