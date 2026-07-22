@@ -1,57 +1,65 @@
 [app]
 
-title = DetektifPribadi
-
+title = Detektif Pribadi
 package.name = detektifpribadi
-
-package.domain = com.hiburdihibur
+package.domain = com.hendychinto
 
 source.dir = .
-
-source.include_exts = py,kv,json,png,jpg,txt
+source.include_exts = py,kv,png,jpg,json,ttf
 
 version = 1.0
 
-requirements = python3,kivy,requests
+requirements = python3,kivy==2.3.0,requests
 
 orientation = portrait
 
 fullscreen = 0
 
-#
+icon.filename = assets/icon.png
+
+presplash.filename = assets/splash.png
+
+log_level = 2
+
+#####################################################################
 # Android
-#
+#####################################################################
 
-android.api = 34
-
+android.api = 33
 android.minapi = 24
-
 android.sdk = 33
-
 android.ndk = 26b
 
 android.accept_sdk_license = True
 
-android.archs = arm64-v8a, armeabi-v7a
-
-#
-# Include Folder
-#
-
-source.include_patterns = assets/*,data/*,kv/*,core/*
-
-#
-# Android Permission
-#
-
 android.permissions = INTERNET
 
-#
-# Log
-#
+android.archs = arm64-v8a
 
-log_level = 2
+android.allow_backup = False
 
-#
-# End
-#
+#####################################################################
+# Buildozer
+#####################################################################
+
+warn_on_root = 0
+
+build_dir = .buildozer
+
+bin_dir = bin
+
+#####################################################################
+# Python-for-Android
+#####################################################################
+
+# Jangan gunakan develop
+# p4a.branch =
+# p4a.commit =
+
+#####################################################################
+# Kivy
+#####################################################################
+
+osx.python_version = 3
+
+osx.kivy_version = 2.3.0
