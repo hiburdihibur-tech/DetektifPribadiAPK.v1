@@ -112,15 +112,16 @@ def scan(timeframe):
             ema20 = ema(close)
 
             macd_line, signal = macd(close)
+
             print(f"\n{symbol}")
-            print(f"MACD -2 : {macd_line.iloc[-2]:.8f}")
-            print(f"SIG  -2 : {signal.iloc[-2]:.8f}")
-            print(f"MACD -1 : {macd_line.iloc[-1]:.8f}")
-            print(f"SIG  -1 : {signal.iloc[-1]:.8f}")
+            print(f"MACD -2 : {macd_line[-2]:.8f}")
+            print(f"SIG  -2 : {signal[-2]:.8f}")
+            print(f"MACD -1 : {macd_line[-1]:.8f}")
+            print(f"SIG  -1 : {signal[-1]:.8f}")
             cross =(
-                macd_line.iloc[-2] <= signal.iloc[-2]
+                macd_line[-2] <= signal[-2]
                 and
-                macd_line.iloc[-1] > signal.iloc[-1]
+                macd_line[-1] > signal[-1]
             )
             print(f"GOLDEN CROSS : {cross}")
             print("--------------------")
@@ -129,9 +130,9 @@ def scan(timeframe):
 
             print(symbol,
                   "Price:", close[-1],
-                  "EMA20:", ema20.iloc[-1],
-                  "MACD:", macd_line.iloc[-1],
-                  "Signal:", signal.iloc[-1]
+                  "EMA20:", ema20[-1],
+                  "MACD:", macd_line[-1],
+                  "Signal:", signal[-1]
                   )
             
             if not price_above_ema(close, ema20):
@@ -162,11 +163,11 @@ def scan(timeframe):
                 "symbol": symbol,
                 "score": score,
                 "close": close[-1],
-                "ema20": float(ema20.iloc[-1]),
-                "macd": float(macd_line.iloc[-1]),
-                "signal": float(signal.iloc[-1]),
+                "ema20": float(ema20[-1]),
+                "macd": float(macd_line[-1]),
+                "signal": float(signal[-1]),
                 "volume": volume[-1],
-                "volume_ma20": float(volume20.iloc[-1]),
+                "volume_ma20": float(volume20[-1]),
             })
 
             if status == "STRONG SIGNAL":
@@ -186,12 +187,12 @@ def scan(timeframe):
             ⭐ Score : {score:.1f}/100
 
             Price : {close[-1]:.6f}
-            EMA20 : {float(ema20.iloc[-1]):.6f}
-            MACD : {float(macd_line.iloc[-1]):.6f}
-            Signal : {float(signal.iloc[-1]):.6f}
+            EMA20 : {float(ema20[-1]):.6f}
+            MACD : {float(macd_line[-1]):.6f}
+            Signal : {float(signal[-1]):.6f}
 
             Volume : {volume[-1]:.2f}
-            Volume MA20 : {float(volume20.iloc[-1]):.2f}
+            Volume MA20 : {float(volume20[-1]):.2f}
             """
         
             if not already_sent(symbol):
