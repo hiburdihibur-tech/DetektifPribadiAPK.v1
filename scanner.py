@@ -2,8 +2,9 @@ import json
 from datetime import datetime
 from signal_state import already_sent, mark_sent, reset_symbol
 
-from core.bybit import Bybit
-from core.indicators import (
+from bybit import Bybit
+
+from indicators import (
     ema,
     macd,
     volume_ma,
@@ -14,7 +15,7 @@ from core.indicators import (
 )
 
 from config import TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
-from core.telegram import TelegramBot
+from telegram import TelegramBot
 
 bot = TelegramBot(TELEGRAM_TOKEN, TELEGRAM_CHAT_ID)
 
