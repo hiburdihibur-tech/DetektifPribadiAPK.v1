@@ -26,11 +26,11 @@ android.api = 34
 
 android.minapi = 24
 
-android.ndk = 25b
+android.sdk = 33
+
+android.ndk = 26b
 
 android.accept_sdk_license = True
-
-p4a.branch = develop
 
 android.archs = arm64-v8a, armeabi-v7a
 
